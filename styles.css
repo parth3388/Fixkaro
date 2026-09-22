@@ -973,9 +973,21 @@ footer {
     left: 0;
     right: 0;
     background: white;
-    padding: 24px;
+    padding: 10px 24px;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
     box-shadow: var(--shadow);
+  }
+
+  .mobile-open .navlinks a {
+    width: 100%;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .mobile-open .navlinks a:last-child {
+    border-bottom: 0;
   }
 
   .values {
