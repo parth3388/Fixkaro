@@ -1,0 +1,18 @@
+@"
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+dist/
+build/
+.next/
+.vscode/
+"@ | Out-File -Encoding utf8 .gitignore

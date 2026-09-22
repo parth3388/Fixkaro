@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Track Service Request | FIX-KAR</title>
+  <meta name="description" content="Track or follow up on a FIX-KAR service request.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div data-site-header></div>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="wrap">
+        <span class="eyebrow">Track request</span>
+        <h1>Check your service request.</h1>
+        <p class="lead">Enter the request number shared by the FIX-KAR team.</p>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="wrap" style="max-width:650px">
+        <form class="form" id="track-form">
+          <div class="field">
+            <label for="request">Service request number</label>
+            <input id="request" placeholder="Example: FIX-A1B2C3D4" required>
+          </div>
+          <div class="field" style="margin-top:16px">
+            <label for="phone">Registered mobile number</label>
+            <input id="phone" inputmode="tel" required>
+          </div>
+          <button class="btn btn-primary" type="submit" style="margin-top:20px">Check Status</button>
+          <div class="notice" role="status">Online tracking is being connected. Please call +91 88242 76600 for the current status of your request.</div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <div data-site-footer></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
