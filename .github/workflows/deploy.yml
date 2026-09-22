@@ -7,36 +7,43 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
-      - name: Deploy to EC2
-        uses: appleboy/ssh-action@v1.2.2
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            set -e
+      - name: Update repository
+        run: |
+          set -e
+          cd /home/ubuntu/Fixkaro
+          git fetch origin main
+          git reset --hard origin/main
 
-            cd /home/ubuntu/Fixkaro
+      - name: Deploy frontend
+        run: |
+          set -e
+          sudo rsync -av \
+            --delete \
+            --exclude='backend/' \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            /home/ubuntu/Fixkaro/ \
+            /var/www/fixkaro/
 
-            git fetch origin main
-            git reset --hard origin/main
+      - name: Update backend
+        run: |
+          set -e
+          cd /home/ubuntu/Fixkaro/backend
+          source .venv/bin/activate
+          pip install -r requirements.txt
+          alembic upgrade head
 
-            sudo cp -r ./* /var/www/fixkaro/
+      - name: Restart backend
+        run: |
+          set -e
+          sudo systemctl restart fixkaro
+          sudo systemctl is-active --quiet fixkaro
+          sudo systemctl is-active --quiet nginx
 
-            cd /home/ubuntu/Fixkaro/backend
-
-            source .venv/bin/activate
-
-            pip install -r requirements.txt
-
-            alembic upgrade head
-
-            sudo systemctl restart fixkaro
-
-            sudo systemctl is-active --quiet fixkaro
-            sudo systemctl is-active --quiet nginx
-
-            curl -fsS https://fix-kar.in/api/v1/health
+      - name: Verify production API
+        run: |
+          set -e
+          curl -fsS https://fix-kar.in/api/v1/health
