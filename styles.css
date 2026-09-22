@@ -200,6 +200,7 @@ img {
   font-size: 1.14rem;
   color: var(--muted);
   max-width: 650px;
+  text-wrap: balance;
 }
 
 .hero-ctas {
