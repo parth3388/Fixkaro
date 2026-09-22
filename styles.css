@@ -184,10 +184,12 @@ img {
 .hero h1,
 .page-hero h1 {
   font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: 800;
   line-height: 1.03;
   letter-spacing: -0.055em;
   color: #071b35;
   margin: 22px 0;
+  text-wrap: balance;
 }
 
 .hero h1 span {
@@ -320,9 +322,9 @@ img {
 
 .section-head {
   display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 30px;
+  flex-direction: column;
+  align-items: start;
+  gap: 12px;
   margin-bottom: 38px;
 }
 
@@ -337,10 +339,24 @@ img {
 .section h2,
 .page-section h2 {
   font-size: clamp(2rem, 3.5vw, 3.15rem);
+  font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.035em;
   color: #071b35;
   margin: 8px 0;
+}
+
+/* Smaller, consistent h2 used for card/panel headers (not big section
+   titles) — band, contact panel, form and long-form policy headings all
+   share this one size/weight instead of each falling back to a different
+   default. */
+.band h2,
+.contact-panel h2,
+.form h2,
+.policy h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.2;
 }
 
 .section-head p {
@@ -378,15 +394,27 @@ img {
   display: grid;
   place-items: center;
   background: #fff2e9;
-  color: var(--orange);
+  color: #b64d09;
   border-radius: 15px;
-  font-size: 1.55rem;
+  font-size: 1.85rem;
+  font-weight: 700;
+}
+
+/* Every h3 on the site (service cards, steps, value cards, content cards)
+   shares this one size/weight so headings are the same "character" wherever
+   they're used — only margin/color vary per component below. */
+.card h3,
+.step h3,
+.value h3,
+.content-card h3,
+.service-card h3 {
+  font-size: 1.12rem;
+  font-weight: 800;
 }
 
 .card h3 {
   margin: 18px 0 6px;
   color: var(--navy);
-  font-size: 1.12rem;
 }
 
 .card p {
@@ -511,11 +539,23 @@ img {
   letter-spacing: 0.08em;
 }
 
+.contact-item a {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #fff;
+}
+
 .form {
   background: white;
   border: 1px solid var(--line);
   border-radius: 24px;
   padding: 34px;
+}
+
+.form h2 {
+  margin: 0 0 24px;
 }
 
 .fields {
@@ -573,10 +613,6 @@ img {
 .page-hero .wrap {
   max-width: 900px;
   text-align: center;
-}
-
-.page-hero h1 {
-  font-size: clamp(2.6rem, 5vw, 4.6rem);
 }
 
 /* ==========================================================================
@@ -864,7 +900,6 @@ footer {
 }
 
 .policy h2 {
-  font-size: 1.7rem;
   margin-top: 38px;
 }
 
@@ -1028,10 +1063,6 @@ footer {
     top: 72px;
   }
 
-  .hero h1 {
-    font-size: 2.85rem;
-  }
-
   .service-grid,
   .steps,
   .fields,
@@ -1058,11 +1089,6 @@ footer {
 
   .section {
     padding: 68px 0;
-  }
-
-  .section-head {
-    align-items: start;
-    flex-direction: column;
   }
 
   .band {
