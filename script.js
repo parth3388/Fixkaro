@@ -22,16 +22,6 @@ const API_BASE =
 const headerTarget = document.querySelector("[data-site-header]");
 if (headerTarget) {
   headerTarget.innerHTML = `
-    <div class="topbar">
-      <div class="wrap">
-        <span>Professional home &amp; tech care in Rajasthan</span>
-        <span>
-          <a href="tel:+918824276600">+91 88242 76600</a>
-          &nbsp;|&nbsp;
-          <a href="mailto:support@fix-kar.in">support@fix-kar.in</a>
-        </span>
-      </div>
-    </div>
     <header class="header">
       <nav class="nav wrap">
         <a href="index.html"><img class="logo" src="assets/fix-kar-logo.png" alt="FIX-KAR – Affordable, Reliable, Fast"></a>

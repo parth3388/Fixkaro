@@ -50,23 +50,6 @@ img {
    Top bar + header + nav
    ========================================================================== */
 
-.topbar {
-  background: var(--navy2);
-  color: #dbe8f3;
-  font-size: 0.84rem;
-}
-
-.topbar .wrap {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 8px 0;
-}
-
-.topbar a {
-  color: #fff;
-}
-
 .header {
   position: sticky;
   top: 0;
@@ -200,7 +183,6 @@ img {
   font-size: 1.14rem;
   color: var(--muted);
   max-width: 650px;
-  text-wrap: balance;
 }
 
 .hero-ctas {
@@ -1042,10 +1024,6 @@ footer {
 @media (max-width: 620px) {
   .wrap {
     width: min(100% - 28px, 1180px);
-  }
-
-  .topbar {
-    display: none;
   }
 
   .nav {
