@@ -1,0 +1,49 @@
+name: Deploy Fixkaro
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Update repository
+        run: |
+          set -e
+          cd /home/ubuntu/Fixkaro
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Deploy frontend
+        run: |
+          set -e
+          sudo rsync -av \
+            --delete \
+            --exclude='backend/' \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            /home/ubuntu/Fixkaro/ \
+            /var/www/fixkaro/
+
+      - name: Update backend
+        run: |
+          set -e
+          cd /home/ubuntu/Fixkaro/backend
+          source .venv/bin/activate
+          pip install -r requirements.txt
+          alembic upgrade head
+
+      - name: Restart backend
+        run: |
+          set -e
+          sudo systemctl restart fixkaro
+          sudo systemctl is-active --quiet fixkaro
+          sudo systemctl is-active --quiet nginx
+
+      - name: Verify production API
+        run: |
+          set -e
+          curl -fsS https://fix-kar.in/api/v1/health
