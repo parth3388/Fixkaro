@@ -221,29 +221,46 @@ the internet**; only Nginx (on 80/443) is public-facing.
 
 ## 13. Nginx configuration overview
 
-Reverse-proxy `/api/v1` to the FastAPI/Gunicorn process, and serve the
-existing static site directly from disk. Example server block:
+The canonical config lives at
+[`backend/deploy/nginx/fixkaro.conf`](deploy/nginx/fixkaro.conf) — copy that
+file rather than retyping the block below; this section just explains it.
+
+It does three things:
+
+1. Reverse-proxies `/api/v1/` to the FastAPI/Gunicorn process.
+2. Serves the static frontend from `/var/www/fixkaro` (the real path the
+   deploy workflow's `rsync` step writes to — see `.github/workflows/deploy.yml`).
+3. Routes extensionless URLs (`/services`) to the matching `.html` file on
+   disk via `try_files`, and 301-redirects a direct `/services.html` request
+   to its canonical `/services` URL (`/index.html` → `/`).
 
 ```nginx
 server {
     listen 80;
     server_name fix-kar.in www.fix-kar.in;
 
-    # Existing static frontend (unchanged HTML/CSS/JS)
-    root /var/www/fixkar;
+    root /var/www/fixkaro;
     index index.html;
 
-    location / {
-        try_files $uri $uri.html $uri/ =404;
-    }
-
-    # FastAPI backend
+    # FastAPI backend — must resolve before the static "/" block.
     location /api/v1/ {
         proxy_pass http://127.0.0.1:8000/api/v1/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    location = /index.html {
+        return 301 /;
+    }
+
+    location ~ ^/([a-z0-9-]+)\.html$ {
+        return 301 /$1;
+    }
+
+    location / {
+        try_files $uri $uri.html $uri/ =404;
     }
 }
 ```
@@ -252,7 +269,36 @@ With this setup, `script.js`'s production branch (`/api/v1`, a relative
 path — see §15) works without any further frontend changes. Put a real TLS
 certificate (e.g. via Certbot/Let's Encrypt) in front of this in production.
 
+### One-time activation (manual — not run by CI)
+
+The deploy workflow's self-hosted runner already has `sudo` for `rsync` and
+`systemctl`, but it does **not** touch Nginx's own config — that's
+deliberate, since a CI step guessing at your existing `sites-available`
+filename could silently no-op or break a working deploy. Apply this once,
+by hand, on the EC2 instance:
+
+```bash
+sudo cp /home/ubuntu/Fixkaro/backend/deploy/nginx/fixkaro.conf /etc/nginx/sites-available/fixkaro
+sudo ln -sf /etc/nginx/sites-available/fixkaro /etc/nginx/sites-enabled/fixkaro
+sudo nginx -t
+sudo systemctl reload nginx   # not `restart` — and never reboot the instance for this
+```
+
+After that, every future `git push` to `main` only needs to update the repo
+file (`backend/deploy/nginx/fixkaro.conf`) and repeat the `cp` + `nginx -t`
++ `reload` above if you change it — the app deploy itself doesn't touch
+Nginx.
+
 ## 14. AWS EC2 deployment steps
+
+> **Note:** this section is the from-scratch bootstrap guide for a new
+> environment. The live fix-kar.in environment already exists and redeploys
+> automatically via `.github/workflows/deploy.yml` on every push to `main`
+> (a self-hosted runner on the instance itself: repo at
+> `/home/ubuntu/Fixkaro`, static files rsynced to `/var/www/fixkaro`,
+> backend run as the `fixkaro` systemd service). Steps 1–3 and 8 below don't
+> apply there — only Nginx (§13's one-time activation) is outside that
+> pipeline.
 
 1. **Launch an EC2 instance** (e.g. Ubuntu 22.04 LTS, t3.small or larger).
    Security group: allow inbound 22 (SSH, restricted to your IP), 80, 443.
@@ -269,7 +315,7 @@ certificate (e.g. via Certbot/Let's Encrypt) in front of this in production.
    on the instance, or create the RDS instance/database if using RDS.
 4. **Deploy the code:** `git clone`/`scp` this repo's `backend/` directory
    to the instance, e.g. into `/opt/fixkar/backend`. Deploy the existing
-   frontend files to `/var/www/fixkar` (§13's Nginx `root`).
+   frontend files to `/var/www/fixkaro` (§13's Nginx `root`).
 5. **Set up the virtual environment and install dependencies** (§4–5) on
    the instance.
 6. **Create `/opt/fixkar/backend/.env`** with production values (real
