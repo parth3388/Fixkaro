@@ -122,16 +122,11 @@
           <input type="checkbox" value="electrical" class="category-filter">
           <span>Electrical</span>
         </label>
-
         <label class="filter-child">
-          <input type="checkbox" value="plumbing" class="category-filter">
-          <span>Plumbing</span>
-        </label>
+  <input type="checkbox" value="solar" class="category-filter">
+  <span>Solar Panel Cleaning</span>
+</label>
 
-        <label class="filter-child">
-          <input type="checkbox" value="cleaning" class="category-filter">
-          <span>Cleaning</span>
-        </label>
 
 
         <label class="filter-parent">
@@ -165,7 +160,7 @@
           </div>
 
           <span class="service-count" id="service-count">
-            12 services
+            11
           </span>
         </div>
 
@@ -280,29 +275,19 @@
               <span class="card-explore">Explore <span>&rarr;</span></span>
             </div>
           </article>
+<!-- 11 -->
+<article class="content-card service-card" data-category="solar maintenance">
+  <img class="service-photo" src="assets/service-solarpanel.png"
+    alt="Technician cleaning solar panels" loading="lazy">
+  <div class="service-body">
+    <h3>Solar Panel Cleaning</h3>
+    <p>Professional solar panel cleaning to remove dust, dirt and buildup and help maintain efficient performance.</p>
+    <span class="card-explore">Explore <span>&rarr;</span></span>
+  </div>
+</article>
+          
 
-          <!-- 11 -->
-          <article class="content-card service-card service-card-no-photo" data-category="plumbing maintenance">
-            <img class="service-photo" src="assets/service-plumbing.png"
-              alt="Technician installing a CCTV camera" loading="lazy">
-            <div class="service-body">
-              <h3>Plumbing</h3>
-              <p>General plumbing maintenance, installation support and common household plumbing issues.</p>
-              <span class="card-explore">Explore <span>&rarr;</span></span>
-            </div>
-          </article>
-
-          <!-- 12 -->
-          <article class="content-card service-card service-card-no-photo" data-category="cleaning maintenance">
-            <img class="service-photo" src="assets/service-cleaning.png"
-              alt="Technician installing a CCTV camera" loading="lazy">
-            <div class="service-body">
-              
-              <h3>Cleaning</h3>
-              <p>General home cleaning support for maintaining a clean and comfortable living space.</p>
-              <span class="card-explore">Explore <span>&rarr;</span></span>
-            </div>
-          </article>
+  
 
         </div>
 
@@ -326,11 +311,11 @@
           <p>Beyond appliance repair, our technicians also help with general home-maintenance work.</p>
         </div>
         <div class="mini-service-grid mini-service-grid--4col">
-          <div class="mini-service"><span>💡</span>Electrical</div>
-          <div class="mini-service"><span>🔧</span>Plumbing</div>
-          <div class="mini-service"><span>🧹</span>Cleaning</div>
-          <div class="mini-service"><span>🛠️</span>Installation</div>
-        </div>
+  <div class="mini-service"><span>💡</span>Electrical</div>
+  <div class="mini-service"><span>☀️</span>Solar Panel Cleaning</div>
+  <div class="mini-service"><span>🔧</span>Installation</div>
+  <div class="mini-service"><span>🛠️</span>General Maintenance</div>
+</div>
       </div>
     </section>
 
@@ -364,10 +349,9 @@ document.addEventListener("DOMContentLoaded", () => {
       "kitchen"
     ],
     maintenance: [
-      "electrical",
-      "plumbing",
-      "cleaning"
-    ],
+  "electrical",
+  "solar"
+],
     technology: [
       "computer",
       "cctv"

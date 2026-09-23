@@ -2051,3 +2051,9 @@ footer {
     margin-left: 16px;
   }
 }
+.step:before {
+  content: "0" counter(step);
+  font-size: 2.7rem;
+  font-weight: 900;
+  color: #071b35;
+}
