@@ -13,41 +13,24 @@
 
   <main>
 
-    <section class="page-hero page-hero--wide">
-      <div class="wrap services-hero-grid">
-        <div class="services-hero-copy">
+    <section class="img-hero">
+      <div class="img-hero-media">
+        <img src="assets/hero-section/services.png" alt="Home appliance showcase: TV, washing machine, refrigerator, AC, water purifier and microwave" loading="eager">
+      </div>
+      <div class="wrap">
+        <div class="img-hero-content">
           <span class="eyebrow">Services</span>
           <h1>One dependable team for home and technology care.</h1>
           <p class="lead">From daily appliances to home technology, FIX-KAR brings trained professionals, clear pricing and dependable follow-through to every visit.</p>
-          <div class="services-hero-ctas">
+          <div class="img-hero-ctas">
             <a class="btn btn-primary" href="/contact">Book a Service</a>
             <a class="btn btn-secondary" href="#services-grid">Explore Services</a>
           </div>
         </div>
-        <div class="services-hero-visual">
-          <div class="main-photo">
-            <img src="assets/service-ac.jpg" alt="FIX-KAR technician servicing an air conditioner">
-          </div>
-          <div class="floating-card floating-card--top">
-            <img src="assets/service-washing.jpg" alt="Washing machine repair">
-            <div>
-              Washing Machine
-              <small>Same-week visits</small>
-            </div>
-          </div>
-          <div class="floating-card floating-card--bottom">
-            <img src="assets/service-laptop.jpg" alt="Laptop and PC repair">
-            <div>
-              PC &amp; Laptop
-              <small>Diagnostics &amp; setup</small>
-            </div>
-          </div>
-          <span class="trust-pill"><span>&#9679;</span> Reliable &bull; Fast &bull; Professional</span>
-        </div>
       </div>
     </section>
 
-    <section class="section" style="padding: 46px 0 0">
+    <section class="section" style="padding: 64px 0 0">
       <div class="wrap trust-strip">
         <div class="trust-strip-item">
           <div class="icon">&#9989;</div>
@@ -80,80 +63,274 @@
       </div>
     </section>
 
-    <section class="section" id="services-grid">
-      <div class="wrap content-grid">
-        <article class="content-card service-card">
-          <img class="service-photo" src="assets/service-ac.jpg" alt="Technician servicing a split air conditioner" loading="lazy">
-          <div class="service-body">
-            <h3>AC &amp; Cooling</h3>
-            <p>Installation, routine service, deep cleaning, low-cooling diagnosis and repair support.</p>
-            <span class="card-explore">Explore <span aria-hidden="true">&rarr;</span></span>
+    <section class="section services-section" id="services-grid">
+  <div class="wrap">
+
+    <div class="services-layout">
+
+      <!-- FILTER SIDEBAR -->
+      <aside class="service-filter">
+        <h3>Filter by Category</h3>
+
+        <label class="filter-parent">
+          <input type="checkbox" value="appliances" class="category-filter">
+          <span>Appliances &amp; Cooling</span>
+        </label>
+
+        <label class="filter-child">
+          <input type="checkbox" value="ac" class="category-filter">
+          <span>AC &amp; Cooling</span>
+        </label>
+
+        <label class="filter-child">
+          <input type="checkbox" value="washing" class="category-filter">
+          <span>Washing Machine</span>
+        </label>
+
+        <label class="filter-child">
+          <input type="checkbox" value="refrigerator" class="category-filter">
+          <span>Refrigerator</span>
+        </label>
+
+        <label class="filter-child">
+          <input type="checkbox" value="tv" class="category-filter">
+          <span>Television</span>
+        </label>
+
+        <label class="filter-child">
+          <input type="checkbox" value="geyser" class="category-filter">
+          <span>Geyser &amp; Water Heater</span>
+        </label>
+
+        <label class="filter-child">
+          <input type="checkbox" value="purifier" class="category-filter">
+          <span>Water Purifier</span>
+        </label>
+
+        <label class="filter-child">
+          <input type="checkbox" value="kitchen" class="category-filter">
+          <span>Kitchen Appliances</span>
+        </label>
+
+
+        <label class="filter-parent">
+          <input type="checkbox" value="maintenance" class="category-filter">
+          <span>Home Maintenance</span>
+        </label>
+
+        <label class="filter-child">
+          <input type="checkbox" value="electrical" class="category-filter">
+          <span>Electrical</span>
+        </label>
+
+        <label class="filter-child">
+          <input type="checkbox" value="plumbing" class="category-filter">
+          <span>Plumbing</span>
+        </label>
+
+        <label class="filter-child">
+          <input type="checkbox" value="cleaning" class="category-filter">
+          <span>Cleaning</span>
+        </label>
+
+
+        <label class="filter-parent">
+          <input type="checkbox" value="technology" class="category-filter">
+          <span>Technology</span>
+        </label>
+
+        <label class="filter-child">
+          <input type="checkbox" value="computer" class="category-filter">
+          <span>PC &amp; Laptop</span>
+        </label>
+
+        <label class="filter-child">
+          <input type="checkbox" value="cctv" class="category-filter">
+          <span>CCTV &amp; Networking</span>
+        </label>
+
+        <button type="button" class="clear-filters" id="clear-service-filters">
+          Clear filters
+        </button>
+      </aside>
+
+
+      <!-- SERVICES -->
+      <div class="services-results">
+
+        <div class="services-results-head">
+          <div>
+            <span class="kicker">Our services</span>
+            <h2>Choose the service you need.</h2>
           </div>
-        </article>
-        <article class="content-card service-card">
-          <img class="service-photo" src="assets/service-washing.jpg" alt="Technician repairing a washing machine" loading="lazy">
-          <div class="service-body">
-            <h3>Washing Machine</h3>
-            <p>Support for drainage, spin, vibration, power, inlet and mechanical issues.</p>
-            <span class="card-explore">Explore <span aria-hidden="true">&rarr;</span></span>
+
+          <span class="service-count" id="service-count">
+            12 services
+          </span>
+        </div>
+
+        <div class="content-grid service-grid-filtered" id="service-cards">
+
+          <!-- 1 -->
+          <article class="content-card service-card" data-category="ac appliances">
+            <img class="service-photo" src="assets/service-ac.jpg"
+              alt="Technician servicing a split air conditioner" loading="lazy">
+            <div class="service-body">
+              <h3>AC &amp; Cooling</h3>
+              <p>Installation, routine service, deep cleaning, low-cooling diagnosis and repair support.</p>
+              <span class="card-explore">Explore <span>&rarr;</span></span>
+            </div>
+          </article>
+
+          <!-- 2 -->
+          <article class="content-card service-card" data-category="washing appliances">
+            <img class="service-photo" src="assets/service-washing.jpg"
+              alt="Technician repairing a washing machine" loading="lazy">
+            <div class="service-body">
+              <h3>Washing Machine</h3>
+              <p>Support for drainage, spin, vibration, power, inlet and mechanical issues.</p>
+              <span class="card-explore">Explore <span>&rarr;</span></span>
+            </div>
+          </article>
+
+          <!-- 3 -->
+          <article class="content-card service-card" data-category="refrigerator appliances">
+            <img class="service-photo" src="assets/service-refrigerator.jpg"
+              alt="Technician diagnosing a refrigerator" loading="lazy">
+            <div class="service-body">
+              <h3>Refrigerator</h3>
+              <p>Cooling diagnosis, thermostat checks, gas-related support, noise and door-seal problems.</p>
+              <span class="card-explore">Explore <span>&rarr;</span></span>
+            </div>
+          </article>
+
+          <!-- 4 -->
+          <article class="content-card service-card" data-category="tv appliances">
+            <img class="service-photo" src="assets/service-tv.jpg"
+              alt="Technician repairing a television" loading="lazy">
+            <div class="service-body">
+              <h3>Television</h3>
+              <p>Power, display, sound, smart-TV setup and connectivity troubleshooting.</p>
+              <span class="card-explore">Explore <span>&rarr;</span></span>
+            </div>
+          </article>
+
+          <!-- 5 -->
+          <article class="content-card service-card" data-category="geyser appliances">
+            <img class="service-photo" src="assets/service-geyser.jpg"
+              alt="Technician inspecting a water heater" loading="lazy">
+            <div class="service-body">
+              <h3>Geyser &amp; Water Heater</h3>
+              <p>Installation, heating checks, leakage assessment, maintenance and safety inspection.</p>
+              <span class="card-explore">Explore <span>&rarr;</span></span>
+            </div>
+          </article>
+
+          <!-- 6 -->
+          <article class="content-card service-card" data-category="purifier appliances">
+            <img class="service-photo" src="assets/service-purifier.jpg"
+              alt="Technician servicing a water purifier" loading="lazy">
+            <div class="service-body">
+              <h3>Water Purifier</h3>
+              <p>Filter replacement, servicing, low-flow and purification-system diagnosis.</p>
+              <span class="card-explore">Explore <span>&rarr;</span></span>
+            </div>
+          </article>
+
+          <!-- 7 -->
+          <article class="content-card service-card" data-category="kitchen appliances">
+            <img class="service-photo" src="assets/service-kitchen.jpg"
+              alt="Technician repairing kitchen appliances" loading="lazy">
+            <div class="service-body">
+              <h3>Kitchen Appliances</h3>
+              <p>Support for microwaves, mixers, chimneys and other common household equipment.</p>
+              <span class="card-explore">Explore <span>&rarr;</span></span>
+            </div>
+          </article>
+
+          <!-- 8 -->
+          <article class="content-card service-card" data-category="computer technology">
+            <img class="service-photo" src="assets/service-laptop.jpg"
+              alt="Technician repairing a laptop and computer" loading="lazy">
+            <div class="service-body">
+              <h3>PC &amp; Laptop</h3>
+              <p>Diagnostics, operating-system setup, performance checks, upgrades and technical support.</p>
+              <span class="card-explore">Explore <span>&rarr;</span></span>
+            </div>
+          </article>
+
+          <!-- 9 -->
+          <article class="content-card service-card" data-category="cctv technology">
+            <img class="service-photo" src="assets/service-cctv.jpg"
+              alt="Technician installing a CCTV camera" loading="lazy">
+            <div class="service-body">
+              <h3>CCTV &amp; Networking</h3>
+              <p>Camera installation, recorder setup, Wi-Fi configuration and connectivity troubleshooting.</p>
+              <span class="card-explore">Explore <span>&rarr;</span></span>
+            </div>
+          </article>
+
+          <!-- 10 -->
+          <article class="content-card service-card service-card-no-photo" data-category="electrical maintenance">
+            <img class="service-photo" src="assets/service-electrical.png"
+              alt="Technician installing a CCTV camera" loading="lazy">
+            <div class="service-body">
+              <h3>Electrical</h3>
+              <p>General electrical maintenance, troubleshooting and installation support for homes.</p>
+              <span class="card-explore">Explore <span>&rarr;</span></span>
+            </div>
+          </article>
+
+          <!-- 11 -->
+          <article class="content-card service-card service-card-no-photo" data-category="plumbing maintenance">
+            <img class="service-photo" src="assets/service-plumbing.png"
+              alt="Technician installing a CCTV camera" loading="lazy">
+            <div class="service-body">
+              <h3>Plumbing</h3>
+              <p>General plumbing maintenance, installation support and common household plumbing issues.</p>
+              <span class="card-explore">Explore <span>&rarr;</span></span>
+            </div>
+          </article>
+
+          <!-- 12 -->
+          <article class="content-card service-card service-card-no-photo" data-category="cleaning maintenance">
+            <img class="service-photo" src="assets/service-cleaning.png"
+              alt="Technician installing a CCTV camera" loading="lazy">
+            <div class="service-body">
+              
+              <h3>Cleaning</h3>
+              <p>General home cleaning support for maintaining a clean and comfortable living space.</p>
+              <span class="card-explore">Explore <span>&rarr;</span></span>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="no-services" id="no-services">
+          No services found for the selected filters.
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <section class="section" style="padding: 32px 0 16px">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Also covered</span>
+            <h2>Home maintenance support.</h2>
           </div>
-        </article>
-        <article class="content-card service-card">
-          <img class="service-photo" src="assets/service-refrigerator.jpg" alt="Technician diagnosing a refrigerator" loading="lazy">
-          <div class="service-body">
-            <h3>Refrigerator</h3>
-            <p>Cooling diagnosis, thermostat checks, gas-related support, noise and door-seal problems.</p>
-            <span class="card-explore">Explore <span aria-hidden="true">&rarr;</span></span>
-          </div>
-        </article>
-        <article class="content-card service-card">
-          <img class="service-photo" src="assets/service-tv.jpg" alt="Technician repairing a television" loading="lazy">
-          <div class="service-body">
-            <h3>Television</h3>
-            <p>Power, display, sound, smart-TV setup and connectivity troubleshooting.</p>
-            <span class="card-explore">Explore <span aria-hidden="true">&rarr;</span></span>
-          </div>
-        </article>
-        <article class="content-card service-card">
-          <img class="service-photo" src="assets/service-geyser.jpg" alt="Technician inspecting a water heater" loading="lazy">
-          <div class="service-body">
-            <h3>Geyser &amp; Water Heater</h3>
-            <p>Installation, heating checks, leakage assessment, maintenance and safety inspection.</p>
-            <span class="card-explore">Explore <span aria-hidden="true">&rarr;</span></span>
-          </div>
-        </article>
-        <article class="content-card service-card">
-          <img class="service-photo" src="assets/service-purifier.jpg" alt="Technician servicing a water purifier" loading="lazy">
-          <div class="service-body">
-            <h3>Water Purifier</h3>
-            <p>Filter replacement, servicing, low-flow and purification-system diagnosis.</p>
-            <span class="card-explore">Explore <span aria-hidden="true">&rarr;</span></span>
-          </div>
-        </article>
-        <article class="content-card service-card">
-          <img class="service-photo" src="assets/service-kitchen.jpg" alt="Technician repairing kitchen appliances" loading="lazy">
-          <div class="service-body">
-            <h3>Kitchen Appliances</h3>
-            <p>Support for microwaves, mixers, chimneys and other common household equipment.</p>
-            <span class="card-explore">Explore <span aria-hidden="true">&rarr;</span></span>
-          </div>
-        </article>
-        <article class="content-card service-card">
-          <img class="service-photo" src="assets/service-laptop.jpg" alt="Technician repairing a laptop and computer" loading="lazy">
-          <div class="service-body">
-            <h3>PC &amp; Laptop</h3>
-            <p>Diagnostics, operating-system setup, performance checks, upgrades and technical support.</p>
-            <span class="card-explore">Explore <span aria-hidden="true">&rarr;</span></span>
-          </div>
-        </article>
-        <article class="content-card service-card">
-          <img class="service-photo" src="assets/service-cctv.jpg" alt="Technician installing a CCTV camera" loading="lazy">
-          <div class="service-body">
-            <h3>CCTV &amp; Networking</h3>
-            <p>Camera installation, recorder setup, Wi-Fi configuration and connectivity troubleshooting.</p>
-            <span class="card-explore">Explore <span aria-hidden="true">&rarr;</span></span>
-          </div>
-        </article>
+          <p>Beyond appliance repair, our technicians also help with general home-maintenance work.</p>
+        </div>
+        <div class="mini-service-grid mini-service-grid--4col">
+          <div class="mini-service"><span>💡</span>Electrical</div>
+          <div class="mini-service"><span>🔧</span>Plumbing</div>
+          <div class="mini-service"><span>🧹</span>Cleaning</div>
+          <div class="mini-service"><span>🛠️</span>Installation</div>
+        </div>
       </div>
     </section>
 
@@ -168,7 +345,90 @@
   </main>
 
   <div data-site-footer></div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const filters = document.querySelectorAll(".category-filter");
+  const cards = document.querySelectorAll(".service-card");
+  const clearButton = document.getElementById("clear-service-filters");
+  const count = document.getElementById("service-count");
+  const noServices = document.getElementById("no-services");
 
+  const parentCategories = {
+    appliances: [
+      "ac",
+      "washing",
+      "refrigerator",
+      "tv",
+      "geyser",
+      "purifier",
+      "kitchen"
+    ],
+    maintenance: [
+      "electrical",
+      "plumbing",
+      "cleaning"
+    ],
+    technology: [
+      "computer",
+      "cctv"
+    ]
+  };
+
+  function applyFilters() {
+    const selected = [...filters]
+      .filter(filter => filter.checked)
+      .map(filter => filter.value);
+
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const categories = card.dataset.category.split(" ");
+
+      let showCard = selected.length === 0;
+
+      if (selected.length > 0) {
+        showCard = selected.some(filter => {
+          if (parentCategories[filter]) {
+            return parentCategories[filter].some(child =>
+              categories.includes(child)
+            );
+          }
+
+          return categories.includes(filter);
+        });
+      }
+
+      card.classList.toggle("is-hidden", !showCard);
+
+      if (showCard) {
+        visibleCount++;
+      }
+    });
+
+    count.textContent =
+      visibleCount + (visibleCount === 1 ? " service" : " services");
+
+    noServices.classList.toggle(
+      "is-visible",
+      visibleCount === 0
+    );
+  }
+
+  filters.forEach(filter => {
+    filter.addEventListener("change", applyFilters);
+  });
+
+  clearButton.addEventListener("click", () => {
+    filters.forEach(filter => {
+      filter.checked = false;
+    });
+
+    applyFilters();
+  });
+
+  applyFilters();
+});
+</script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -13,10 +13,20 @@
 
   <main>
 
-    <section class="page-hero">
+    <section class="img-hero">
+      <div class="img-hero-media">
+        <img src="assets/hero-section/contact.png" alt="A calm home-office support desk with a laptop and headset" loading="eager">
+      </div>
       <div class="wrap">
-        <span class="eyebrow">Contact &amp; booking</span>
-        <h1>Tell us what needs attention.</h1>
+        <div class="img-hero-content">
+          <span class="eyebrow">Contact us</span>
+          <h1>We're here to help.</h1>
+          <p class="lead">Share the appliance and problem. Our team will contact you to confirm availability and the next step.</p>
+          <div class="img-hero-ctas">
+            <a class="btn btn-primary" href="tel:+918824276600">Call Now</a>
+            <a class="btn btn-secondary" href="#enquiry-form">Send a Message</a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -62,7 +72,8 @@
             </div>
             <div class="field full">
               <label for="category">Service category</label>
-              <select id="category">
+              <select id="category" required autocomplete="off">
+                <option value="" selected disabled>Select a service category</option>
                 <option>AC &amp; Cooling</option>
                 <option>Washing Machine</option>
                 <option>Refrigerator</option>

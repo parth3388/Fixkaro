@@ -13,27 +13,28 @@
 
   <main>
 
-    <section class="page-hero">
-      <div class="wrap">
-        <span class="eyebrow">Track request</span>
-        <h1>Check your service request.</h1>
+    <section class="img-hero">
+      <div class="img-hero-media">
+        <img src="assets/hero-section/trackrequest.png" alt="Phone showing FIX-KAR request tracking beside a FIX-KAR service van" loading="eager">
       </div>
-    </section>
-
-    <section class="section soft" style="padding-top: 40px">
-      <div class="wrap" style="max-width:650px">
-        <form class="form" id="track-form">
-          <div class="field">
-            <label for="request">Service request number</label>
-            <input id="request" placeholder="Example: FIX-A1B2C3D4" required>
-          </div>
-          <div class="field" style="margin-top:16px">
-            <label for="phone">Registered mobile number</label>
-            <input id="phone" inputmode="tel" required>
-          </div>
-          <button class="btn btn-primary" type="submit" style="margin-top:20px">Check Status</button>
-          <div class="notice" role="status">Online tracking is being connected. Please call +91 88242 76600 for the current status of your request.</div>
-        </form>
+      <div class="wrap">
+        <div class="img-hero-content">
+          <span class="eyebrow">Track request</span>
+          <h1>Track your service request.</h1>
+          <p class="lead">Enter your booking reference and the mobile number you booked with to check its current status.</p>
+          <form class="form" id="track-form" style="margin-top: 24px">
+            <div class="field">
+              <label for="request">Service request number</label>
+              <input id="request" placeholder="Example: FIX-A1B2C3D4" required>
+            </div>
+            <div class="field" style="margin-top: 16px">
+              <label for="phone">Registered mobile number</label>
+              <input id="phone" inputmode="tel" required>
+            </div>
+            <button class="btn btn-primary" type="submit" style="margin-top: 20px">Check Status</button>
+            <div class="notice" role="status">Online tracking is being connected. Please call +91 88242 76600 for the current status of your request.</div>
+          </form>
+        </div>
       </div>
     </section>
 

@@ -179,51 +179,6 @@ img {
    Hero
    ========================================================================== */
 
-.hero {
-  position: relative;
-  background: linear-gradient(180deg, #fbfdff, #fff 55%);
-  padding: 78px 0 70px;
-  overflow: hidden;
-}
-
-.hero::before,
-.hero::after {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  border-radius: 50%;
-  filter: blur(60px);
-  pointer-events: none;
-}
-
-.hero::before {
-  width: 520px;
-  height: 520px;
-  top: -220px;
-  right: -120px;
-  background: radial-gradient(circle, rgba(245, 114, 22, 0.16), transparent 70%);
-}
-
-.hero::after {
-  width: 460px;
-  height: 460px;
-  bottom: -260px;
-  left: -160px;
-  background: radial-gradient(circle, rgba(6, 46, 87, 0.1), transparent 70%);
-}
-
-.hero .wrap {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.02fr 0.98fr;
-  align-items: center;
-  gap: 58px;
-}
-
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -237,18 +192,18 @@ img {
   font-weight: 750;
 }
 
-.hero h1,
-.page-hero h1 {
-  font-size: clamp(2.8rem, 5vw, 5rem);
+.page-hero h1,
+.img-hero-content h1 {
+  font-size: clamp(2.6rem, 4.2vw, 4rem);
   font-weight: 800;
-  line-height: 1.03;
-  letter-spacing: -0.055em;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
   color: #071b35;
-  margin: 22px 0;
+  margin: 18px 0;
   text-wrap: balance;
 }
 
-.hero h1 span {
+.img-hero-content h1 span {
   color: var(--orange);
 }
 
@@ -286,51 +241,12 @@ img {
   margin-right: 8px;
 }
 
-.hero-art {
-  position: relative;
-}
-
-.hero-art:before {
-  content: "";
-  position: absolute;
-  inset: -18px 18px 18px -18px;
-  background: var(--orange);
-  border-radius: 34px;
-  transform: rotate(-3deg);
-}
-
-.hero-art img {
-  position: relative;
-  aspect-ratio: 1.18 / 1;
-  object-fit: cover;
-  border-radius: 28px;
-  box-shadow: var(--shadow);
-}
-
-.ticket {
-  position: absolute;
-  z-index: 2;
-  left: -25px;
-  top: 28px;
-  background: white;
-  padding: 14px 18px;
-  border-radius: 14px;
-  box-shadow: var(--shadow);
-  font-weight: 750;
-}
-
-.ticket small {
-  display: block;
-  color: var(--muted);
-  font-weight: 550;
-}
-
 /* ==========================================================================
    Stats band
    ========================================================================== */
 
 .stats {
-  margin-top: -28px;
+  margin-top: 56px;
   position: relative;
   z-index: 3;
 }
@@ -368,8 +284,13 @@ img {
    Sections
    ========================================================================== */
 
+/* Asymmetric (top-heavy) on purpose: adjacent sections' padding doesn't
+   CSS-collapse like margins do, so two plain sections back to back used to
+   stack to 160px of dead space (80+80). Owning most of the gap on the
+   incoming section's top and keeping the outgoing bottom small means a
+   normal section-to-section transition now lands around 96px instead. */
 .section {
-  padding: 90px 0;
+  padding: 56px 0 24px;
 }
 
 .section.soft {
@@ -707,9 +628,23 @@ img {
 
 .page-hero {
   position: relative;
-  padding: 70px 0;
+  padding: 60px 0;
   background: linear-gradient(180deg, #f8fbff, #fff);
   overflow: hidden;
+}
+
+/* Compact variant for FAQ/legal pages — a page title, not a marketing hero. */
+.page-hero.page-hero--compact {
+  padding: 40px 0;
+}
+
+.page-hero--compact h1 {
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  margin: 10px 0 0;
+}
+
+.page-hero--compact .eyebrow {
+  margin-bottom: 0;
 }
 
 .page-hero::before,
@@ -745,127 +680,195 @@ img {
   text-align: center;
 }
 
-/* Opt-in modifier for pages using a wide, two-column hero (e.g. Services)
-   instead of the centered single-column layout above. */
-.page-hero.page-hero--wide .wrap {
-  max-width: 1180px;
-  text-align: left;
-}
-
 /* ==========================================================================
-   Services hero — wide two-column composition (image + floating cards)
+   Image hero — one shared component for every page that has a hero photo
+   (Home, Services, Plans, How it works, For Business, About, Contact,
+   Track). The photo is a single full-bleed background with the brand's
+   text overlaid on its left side (each photo was composed with a light,
+   empty left edge for exactly this purpose); on narrow screens the text
+   and image stack instead of overlaying, per the required mobile layout.
    ========================================================================== */
 
-.services-hero-grid {
+.img-hero {
+  position: relative;
+  height: 500px;
+  min-height: 0;
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
   align-items: center;
-  gap: 54px;
-  text-align: left;
-}
-
-.services-hero-copy .eyebrow {
-  margin-bottom: 4px;
-}
-
-.services-hero-copy h1 {
-  text-align: left;
-}
-
-.services-hero-copy .lead {
-  margin: 18px 0 0;
-  text-align: left;
-}
-
-.services-hero-ctas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 30px;
-}
-
-.services-hero-visual {
-  position: relative;
-}
-
-.services-hero-visual .main-photo {
-  position: relative;
-  border-radius: 28px;
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  aspect-ratio: 6 / 5;
+  border-radius: 32px;
+  margin: 0 0 0 28px;
+  width: calc(100% - 28px);
+  padding: 24px 44px;
+  background: var(--soft);
 }
 
-.services-hero-visual .main-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.img-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
 
-.services-hero-visual .main-photo::after {
+/* Safety net for text legibility: each source photo already fades to a
+   light left edge, but exactly how much varies per image and per hero
+   width (the crop mode itself changes across breakpoints). This adds a
+   soft, text-zone-only wash on top — not a filter over the whole photo —
+   so copy always stays readable without hand-tuning every image/width
+   combination individually. */
+.img-hero-media::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(200deg, transparent 55%, rgba(6, 27, 53, 0.45));
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.4) 32%, rgba(255, 255, 255, 0) 58%);
+  pointer-events: none;
 }
 
-.floating-card {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: #fff;
-  border-radius: 16px;
-  padding: 12px 16px 12px 12px;
-  box-shadow: var(--shadow);
-  font-weight: 750;
-  color: var(--navy);
-  font-size: 0.92rem;
-  z-index: 2;
-}
-
-.floating-card img {
-  width: 44px;
-  height: 44px;
-  border-radius: 11px;
+.img-hero-media img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: center right;
 }
 
-.floating-card small {
-  display: block;
-  color: var(--muted);
-  font-weight: 550;
-  font-size: 0.76rem;
-  margin-top: 1px;
+/* Override the base .wrap's centering (width cap + margin:auto) — inside
+   the hero it must hug the left edge (where the padded content column
+   lives), not float centered within a narrower capped column. */
+.img-hero > .wrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: none;
+  margin: 0;
 }
 
-.floating-card--top {
-  top: -22px;
-  left: -28px;
+.img-hero-content {
+  max-width: 36%;
 }
 
-.floating-card--bottom {
-  bottom: -22px;
-  right: -22px;
+.img-hero-content .lead {
+  max-width: 340px;
 }
 
-.trust-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--navy2);
-  color: #fff;
-  border-radius: 999px;
-  padding: 10px 18px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  box-shadow: var(--shadow);
+.img-hero-content h1 {
+  text-align: left;
+  font-size: clamp(2.625rem, 4vw, 3.625rem);
+  line-height: 1.06;
+  margin: 14px 0 0;
+}
+
+.img-hero-content .lead {
+  text-align: left;
+  margin: 14px 0 0;
+}
+
+.img-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
   margin-top: 22px;
 }
 
-.trust-pill span {
-  color: #ffd7ba;
+@media (max-width: 980px) {
+  .img-hero {
+    display: grid;
+    flex-direction: row;
+    position: relative;
+    min-height: clamp(420px, 57vw, 460px);
+    border-radius: 24px;
+    background: var(--soft);
+    margin: 0 0 0 28px;
+    width: calc(100% - 28px);
+    /* No horizontal padding here — the image (a sibling flex item below)
+       must stay edge-to-edge; only the text column gets inset, via
+       .img-hero-content's own padding a few rules down. */
+    padding: 28px 40px;
+  }
+
+  .img-hero-media::after {
+    content: "";
+  }
+
+  .img-hero-media {
+    position: absolute;
+    order: 2;
+    height: auto;
+    border-radius: 22px;
+    overflow: hidden;
+    margin-top: 0;
+  }
+
+  .img-hero > .wrap {
+    position: relative;
+    order: 1;
+    width: 100%;
+    margin: 0;
+  }
+
+  .img-hero-content {
+    max-width: 48%;
+    padding: 0;
+    text-align: left;
+  }
+
+  .img-hero-content h1,
+  .img-hero-content .lead {
+    text-align: left;
+  }
+
+  .img-hero-ctas {
+    justify-content: flex-start;
+    margin-top: 18px;
+  }
+}
+
+@media (max-width: 620px) {
+  .img-hero {
+    border-radius: 20px;
+    min-height: clamp(380px, 90vw, 430px);
+    margin-left: 14px;
+    width: calc(100% - 14px);
+    padding: 18px 16px;
+  }
+
+  .img-hero-media {
+    border-radius: 18px;
+    height: auto;
+    margin-top: 0;
+  }
+
+  .img-hero-content h1 {
+    font-size: clamp(1.75rem, 7vw, 2.125rem);
+    line-height: 1.08;
+    margin-top: 12px;
+  }
+
+  .img-hero-content .lead {
+    margin-top: 12px;
+    font-size: clamp(0.875rem, 3.2vw, 1rem);
+    line-height: 1.55;
+  }
+
+  .img-hero-content {
+    max-width: 68%;
+  }
+
+  .img-hero-ctas {
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .img-hero-ctas .btn {
+    min-height: 38px;
+    padding: 0 10px;
+    font-size: 0.82rem;
+  }
+
+  .img-hero .eyebrow {
+    gap: 6px;
+    padding: 5px 9px;
+    font-size: 0.76rem;
+  }
 }
 
 /* ==========================================================================
@@ -928,6 +931,10 @@ img {
   gap: 12px;
 }
 
+.mini-service-grid--4col {
+  grid-template-columns: repeat(4, 1fr);
+}
+
 .mini-service {
   display: flex;
   align-items: center;
@@ -948,9 +955,54 @@ img {
   border-color: #ffc59d;
 }
 
-.mini-service span {
-  font-size: 1.2rem;
+/* Reusable premium SVG icon badge — used for the mini-service tiles and
+   floating hero cards. One consistent size/background/stroke treatment
+   instead of emoji, per-page inline styling, or a new icon dependency. */
+.about-service-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #eef4fb, #f7f9fc);
+  border: 1px solid var(--line);
+  color: var(--navy);
   flex-shrink: 0;
+  transition: background-color 0.22s var(--ease), border-color 0.22s var(--ease), color 0.22s var(--ease);
+}
+
+.about-service-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mini-service:hover .about-service-icon {
+  background: var(--navy2);
+  border-color: var(--navy2);
+  color: #fff;
+}
+
+.about-service-icon--sm {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+}
+
+.about-service-icon--sm svg {
+  width: 16px;
+  height: 16px;
+}
+
+.about-service-icon--accent {
+  color: var(--orange-deep);
+  background: linear-gradient(135deg, #fff2e9, #fff8f2);
+  border-color: #ffd9b8;
 }
 
 /* Pali → Jaipur → Rajasthan journey flow (Where We Serve section) */
@@ -1427,46 +1479,9 @@ footer {
     display: none;
   }
 
-  .hero-grid,
   .about-grid,
-  .contact-grid,
-  .services-hero-grid {
+  .contact-grid {
     grid-template-columns: 1fr;
-  }
-
-  .hero {
-    padding-top: 45px;
-  }
-
-  .hero-art {
-    margin: 25px 18px 0;
-  }
-
-  .page-hero.page-hero--wide .wrap {
-    text-align: center;
-  }
-
-  .services-hero-copy h1,
-  .services-hero-copy .lead {
-    text-align: center;
-  }
-
-  .services-hero-ctas {
-    justify-content: center;
-  }
-
-  .services-hero-visual {
-    margin: 40px 30px 0;
-  }
-
-  .floating-card--top {
-    top: -16px;
-    left: -12px;
-  }
-
-  .floating-card--bottom {
-    bottom: -16px;
-    right: -12px;
   }
 
   .trust-strip {
@@ -1577,7 +1592,7 @@ footer {
   }
 
   .section {
-    padding: 68px 0;
+    padding: 44px 0 24px;
   }
 
   .band {
@@ -1603,23 +1618,6 @@ footer {
 
   .trust-strip {
     grid-template-columns: 1fr;
-  }
-
-  .services-hero-visual {
-    margin: 32px 0 0;
-  }
-
-  /* Floating mini-cards add clutter at this width — keep just the main
-     photo and the trust pill. */
-  .floating-card {
-    display: none;
-  }
-
-  .trust-pill {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    font-size: 0.78rem;
   }
 
   .route-cta {
@@ -1657,5 +1655,399 @@ footer {
 
   .journey-arrow {
     transform: rotate(90deg);
+  }
+}
+/* =========================================================
+   Service Locations
+   ========================================================= */
+
+.locations-section {
+  padding: 58px 0;
+  background: #f6f9fd;
+}
+
+.locations-head {
+  text-align: center;
+  margin-bottom: 38px;
+}
+
+.locations-kicker {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: #eaf3ff;
+  color: #1760a8;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.locations-head h2 {
+  margin: 12px 0 8px;
+  color: #071b35;
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+.locations-head p {
+  margin: 0 auto;
+  max-width: 600px;
+  color: #637083;
+  font-size: 1rem;
+}
+
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.location-card {
+  min-height: 135px;
+  padding: 22px 18px;
+  background: #fff;
+  border: 1px solid #e0e8f1;
+  border-radius: 17px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.location-card:hover {
+  transform: translateY(-3px);
+  border-color: #bcd7f2;
+  box-shadow: 0 12px 30px rgba(6, 46, 87, 0.08);
+}
+
+.location-icon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #e9f4ff, #e5f8f4);
+  color: #0660ad;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.location-card h3 {
+  margin: 0 0 3px;
+  color: #071b35;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.location-card p {
+  margin: 0;
+  color: #718096;
+  font-size: 0.78rem;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .locations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 620px) {
+  .locations-section {
+    padding: 42px 0;
+  }
+
+  .locations-head {
+    margin-bottom: 25px;
+  }
+
+  .locations-head h2 {
+    font-size: 1.8rem;
+  }
+
+  .locations-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .location-card {
+    min-height: 120px;
+    padding: 16px 10px;
+  }
+
+  .location-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 21px;
+    margin-bottom: 8px;
+  }
+
+  .location-card h3 {
+    font-size: 0.92rem;
+  }
+
+  .location-card p {
+    font-size: 0.7rem;
+  }
+}
+.location-icon {
+  color: var(--orange);
+}
+
+.location-icon svg {
+  width: 25px;
+  height: 25px;
+  fill: var(--orange);
+  stroke: var(--orange);
+  stroke-width: 1;
+}
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  justify-content: center;
+}
+.location-card:nth-child(9) {
+  grid-column: 2;
+}
+
+.location-card:nth-child(10) {
+  grid-column: 3;
+}
+@media (min-width: 901px) {
+  .location-card:nth-child(9) {
+    grid-column: 2;
+  }
+
+  .location-card:nth-child(10) {
+    grid-column: 3;
+  }
+}
+/* =========================================================
+   SERVICES FILTER + RESULTS
+   ========================================================= */
+
+.services-section {
+  padding-top: 48px;
+}
+
+.services-layout {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* Filter */
+
+.service-filter {
+  position: sticky;
+  top: 105px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 22px 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.service-filter h3 {
+  margin: 0 0 20px;
+  color: var(--navy);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.filter-parent,
+.filter-child {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.filter-parent {
+  margin-top: 18px;
+  color: #6f7c8b;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.filter-parent:first-of-type {
+  margin-top: 0;
+}
+
+.filter-child {
+  margin: 9px 0 0 20px;
+  color: #637083;
+  font-size: 0.9rem;
+}
+
+.filter-parent input,
+.filter-child input {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin: 2px 0 0;
+  accent-color: var(--orange);
+  cursor: pointer;
+}
+
+.clear-filters {
+  width: 100%;
+  margin-top: 22px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--navy);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.clear-filters:hover {
+  border-color: var(--orange);
+  color: var(--orange-deep);
+  background: #fff8f3;
+}
+
+/* Results */
+
+.services-results {
+  min-width: 0;
+}
+
+.services-results-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.services-results-head h2 {
+  margin: 6px 0 0;
+}
+
+.service-count {
+  flex-shrink: 0;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: #fff1e6;
+  color: var(--orange-deep);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.service-grid-filtered {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Services without photos */
+
+.service-card-no-photo {
+  overflow: hidden;
+}
+
+.service-card-no-photo .service-body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.service-card-no-photo .card-explore {
+  margin-top: auto !important;
+  padding-top: 18px;
+}
+
+.service-icon-large {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 15px;
+  border-radius: 14px;
+  background: #fff2e9;
+  font-size: 1.5rem;
+}
+
+/* Hidden filtered cards */
+
+.service-card.is-hidden {
+  display: none;
+}
+
+.no-services {
+  display: none;
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--muted);
+  border: 1px dashed var(--line);
+  border-radius: 16px;
+  margin-top: 20px;
+}
+
+.no-services.is-visible {
+  display: block;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+  .services-layout {
+    grid-template-columns: 235px 1fr;
+    gap: 22px;
+  }
+
+  .service-grid-filtered {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .services-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .service-filter {
+    position: static;
+  }
+
+  .service-grid-filtered {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .services-results-head {
+    align-items: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .service-grid-filtered {
+    grid-template-columns: 1fr;
+  }
+
+  .services-results-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-child {
+    margin-left: 16px;
   }
 }

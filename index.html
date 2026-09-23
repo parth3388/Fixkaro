@@ -32,26 +32,23 @@
 
   <main>
 
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <span class="eyebrow">Home appliance care, made dependable</span>
-          <h1>Repairs that feel <span>simple</span> again.</h1>
-          <div class="hero-ctas">
+    <section class="img-hero">
+      <div class="img-hero-media">
+        <img src="assets/hero-section/home.png" alt="Modern living room with a serviced AC, washing machine and refrigerator" loading="eager">
+      </div>
+      <div class="wrap">
+        <div class="img-hero-content">
+          <span class="eyebrow">Trusted home &amp; tech services</span>
+          <h1>Fixing your everyday problems, <span>the easy way</span>.</h1>
+          <p class="lead">Reliable appliance repair, maintenance and technology support at your doorstep.</p>
+          <div class="img-hero-ctas">
             <a class="btn btn-primary" href="/contact">Book a Service</a>
-            <a class="btn btn-secondary" href="tel:+918824276600">Speak to our team</a>
+            <a class="btn btn-secondary" href="#how">How It Works</a>
           </div>
           <div class="trust">
             <span>Skilled technicians</span>
             <span>Clear service updates</span>
             <span>Customer-first support</span>
-          </div>
-        </div>
-        <div class="hero-art">
-          <img src="assets/technician-hero.png" alt="Professional technician servicing a home air conditioner">
-          <div class="ticket">
-            <small>Service support</small>
-            Fast, careful and dependable
           </div>
         </div>
       </div>
@@ -157,6 +154,47 @@
       </div>
     </section>
 
+    <section class="section soft">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Why FIX-KAR</span>
+            <h2>Built around what customers need.</h2>
+          </div>
+        </div>
+        <div class="trust-strip">
+          <div class="trust-strip-item">
+            <div class="icon">✅</div>
+            <div>
+              <strong>Reliable Service</strong>
+              <span>Consistent, careful work</span>
+            </div>
+          </div>
+          <div class="trust-strip-item">
+            <div class="icon">🛡️</div>
+            <div>
+              <strong>Verified Professionals</strong>
+              <span>Trained &amp; background-checked</span>
+            </div>
+          </div>
+          <div class="trust-strip-item">
+            <div class="icon">₹</div>
+            <div>
+              <strong>Transparent Pricing</strong>
+              <span>No hidden charges</span>
+            </div>
+          </div>
+          <div class="trust-strip-item">
+            <div class="icon">⚡</div>
+            <div>
+              <strong>Fast Response</strong>
+              <span>Prompt confirmation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section">
       <div class="wrap">
         <div class="band">
@@ -209,7 +247,8 @@
             </div>
             <div class="field full">
               <label for="category">Service category</label>
-              <select id="category">
+              <select id="category" required autocomplete="off">
+                <option value="" selected disabled>Select a service category</option>
                 <option>AC &amp; Cooling</option>
                 <option>Washing Machine</option>
                 <option>Refrigerator</option>
