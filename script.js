@@ -24,19 +24,19 @@ if (headerTarget) {
   headerTarget.innerHTML = `
     <header class="header">
       <nav class="nav wrap">
-        <a href="index.html"><img class="logo" src="assets/fix-kar-logo.png" alt="FIX-KAR – Affordable, Reliable, Fast"></a>
+        <a href="/"><img class="logo" src="assets/fix-kar-logo.png" alt="FIX-KAR – Affordable, Reliable, Fast"></a>
         <div class="navlinks">
-          <a${active("home")} href="index.html">Home</a>
-          <a${active("services")} href="services.html">Services</a>
-          <a${active("plans")} href="plans.html">Plans</a>
-          <a${active("how")} href="how-it-works.html">How it works</a>
-          <a${active("business")} href="business.html">For Business</a>
-          <a${active("about")} href="about.html">About</a>
-          <a${active("contact")} href="contact.html">Contact</a>
+          <a${active("home")} href="/">Home</a>
+          <a${active("services")} href="/services">Services</a>
+          <a${active("plans")} href="/plans">Plans</a>
+          <a${active("how")} href="/how-it-works">How it works</a>
+          <a${active("business")} href="/business">For Business</a>
+          <a${active("about")} href="/about">About</a>
+          <a${active("contact")} href="/contact">Contact</a>
         </div>
         <div class="actions">
-          <a class="btn btn-secondary" href="track.html">Track Request</a>
-          <a class="btn btn-primary" href="contact.html">Book Service</a>
+          <a class="btn btn-secondary" href="/track">Track Request</a>
+          <a class="btn btn-primary" href="/contact">Book Service</a>
           <button class="menu" aria-label="Toggle menu">☰</button>
         </div>
       </nav>
@@ -57,10 +57,10 @@ if (footerTarget) {
           </div>
           <div>
             <h4>Explore</h4>
-            <a href="services.html">Services</a>
-            <a href="plans.html">Plans</a>
-            <a href="about.html">About Us</a>
-            <a href="faq.html">FAQ</a>
+            <a href="/services">Services</a>
+            <a href="/plans">Plans</a>
+            <a href="/about">About Us</a>
+            <a href="/faq">FAQ</a>
           </div>
           <div>
             <h4>Contact</h4>
@@ -70,10 +70,10 @@ if (footerTarget) {
           </div>
           <div>
             <h4>Policies</h4>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
-            <a href="cancellation.html">Cancellation Policy</a>
-            <a href="refund.html">Refund Policy</a>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+            <a href="/cancellation">Cancellation Policy</a>
+            <a href="/refund">Refund Policy</a>
           </div>
         </div>
         <div class="footer-bottom">© 2026 FIX-KAR. All rights reserved.</div>
@@ -349,7 +349,7 @@ if (plansApp) {
             <div class="price">${formatMoney(price)} <small>/${unit}</small></div>
             <p class="yearly-saving">You save ${formatMoney(savings)} per year</p>
             <ul>${features.map((feature) => `<li>${feature}</li>`).join("")}</ul>
-            <a class="btn ${isFeatured ? "btn-primary" : "btn-secondary"}" href="contact.html">Choose ${name}</a>
+            <a class="btn ${isFeatured ? "btn-primary" : "btn-secondary"}" href="/contact">Choose ${name}</a>
           </article>
         `;
       })
