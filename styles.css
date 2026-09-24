@@ -777,8 +777,8 @@ img {
     min-height: clamp(420px, 57vw, 460px);
     border-radius: 24px;
     background: var(--soft);
-    margin: 0 0 0 28px;
-    width: calc(100% - 28px);
+    margin: 0;
+    width: 100%;
     /* No horizontal padding here — the image (a sibling flex item below)
        must stay edge-to-edge; only the text column gets inset, via
        .img-hero-content's own padding a few rules down. */
@@ -806,7 +806,7 @@ img {
   }
 
   .img-hero-content {
-    max-width: 48%;
+    max-width: 56%;
     padding: 0;
     text-align: left;
   }
@@ -814,6 +814,20 @@ img {
   .img-hero-content h1,
   .img-hero-content .lead {
     text-align: left;
+  }
+
+  .img-hero-content h1,
+  .img-hero-content h1 span,
+  .img-hero-content .lead,
+  .img-hero-content .trust {
+    color: #fff;
+    font-weight: 800;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.65), 0 1px 12px rgba(0, 0, 0, 0.45);
+  }
+
+  .img-hero-content .trust span:before {
+    background: #fff;
+    text-shadow: none;
   }
 
   .img-hero-ctas {
@@ -826,8 +840,8 @@ img {
   .img-hero {
     border-radius: 20px;
     min-height: clamp(380px, 90vw, 430px);
-    margin-left: 14px;
-    width: calc(100% - 14px);
+    margin: 0;
+    width: 100%;
     padding: 18px 16px;
   }
 
@@ -850,7 +864,7 @@ img {
   }
 
   .img-hero-content {
-    max-width: 68%;
+    max-width: 78%;
   }
 
   .img-hero-ctas {
