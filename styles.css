@@ -96,7 +96,7 @@ img {
 }
 
 .nav {
-  height: 92px;
+  height: 118px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -104,7 +104,7 @@ img {
 }
 
 .logo {
-  width: 224px;
+  width: 270px;
   flex-shrink: 0;
 }
 
@@ -1553,7 +1553,7 @@ footer {
   .mobile-open .navlinks {
     display: flex;
     position: absolute;
-    top: 92px;
+    top: 118px;
     left: 0;
     right: 0;
     background: white;
