@@ -9,11 +9,11 @@ from sqlalchemy.exc import IntegrityError
 from app.api.routes import bookings, health, services
 from app.core.config import settings
 
-logger = logging.getLogger("fixkar")
+logger = logging.getLogger("fixmyghar")
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
-    description="Backend API for the FIX-KAR service-booking website.",
+    description="Backend API for the FixMyGhar service-booking website.",
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc",

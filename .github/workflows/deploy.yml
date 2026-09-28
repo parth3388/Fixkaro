@@ -48,7 +48,7 @@ jobs:
           set -e
 
           for i in {1..10}; do
-            if curl -4 -fsS https://fix-kar.in/api/v1/health; then
+            if curl -4 -fsS https://fixmyghar.com/api/v1/health; then
               echo
               echo "Production API is healthy."
               exit 0

@@ -1,5 +1,5 @@
 // ==========================================================================
-// FIX-KAR — Shared site behaviour
+// FixMyGhar — Shared site behaviour
 // Injects the header/footer on inner pages, wires up the mobile menu,
 // the enquiry/track forms, and the interactive plans pricing table.
 // ==========================================================================
@@ -24,7 +24,7 @@ if (headerTarget) {
   headerTarget.innerHTML = `
     <header class="header">
       <nav class="nav wrap">
-        <a href="/"><img class="logo" src="assets/fix-kar-logo.png" alt="FIX-KAR – Affordable, Reliable, Fast"></a>
+        <a href="/"><img class="logo" src="assets/fixmyghar-logo.webp" alt="FixMyGhar – Affordable, Reliable, Fast"></a>
         <div class="navlinks">
           <a${active("home")} href="/">Home</a>
           <a${active("services")} href="/services">Services</a>
@@ -52,7 +52,7 @@ if (footerTarget) {
       <div class="wrap">
         <div class="footer-grid">
           <div>
-            <img class="footer-logo" src="assets/fix-kar-logo.png" alt="FIX-KAR">
+            <img class="footer-logo" src="assets/fixmyghar-logo.webp" alt="FixMyGhar">
             <p>Affordable, reliable and convenient home appliance service support from Pali, Rajasthan.</p>
           </div>
           <div>
@@ -65,7 +65,7 @@ if (footerTarget) {
           <div>
             <h4>Contact</h4>
             <a href="tel:+918824276600">+91 88242 76600</a>
-            <a href="mailto:support@fix-kar.in">support@fix-kar.in</a>
+            <a href="mailto:support@fixmyghar.com">support@fixmyghar.com</a>
             <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=279%2C%20Ashapura%20Nagar%2C%20Pali%20306401">279, Ashapura Nagar, Pali 306401</a>
           </div>
           <div>
@@ -76,7 +76,7 @@ if (footerTarget) {
             <a href="/refund">Refund Policy</a>
           </div>
         </div>
-        <div class="footer-bottom">© 2026 FIX-KAR. All rights reserved.</div>
+        <div class="footer-bottom">© 2026 FixMyGhar. All rights reserved.</div>
       </div>
     </footer>
   `;
@@ -149,11 +149,11 @@ if (enquiryForm) {
         const cityField = enquiryForm.querySelector("#city");
         if (cityField) cityField.value = "Pali";
       } else {
-        const message = (data && data.error && data.error.message) || "Something went wrong submitting your enquiry. Please call or email FIX-KAR instead.";
+        const message = (data && data.error && data.error.message) || "Something went wrong submitting your enquiry. Please call or email FixMyGhar instead.";
         showNotice(enquiryForm, message, true);
       }
     } catch (networkError) {
-      showNotice(enquiryForm, "Could not reach the FIX-KAR server. Please check your connection or call us instead.", true);
+      showNotice(enquiryForm, "Could not reach the FixMyGhar server. Please check your connection or call us instead.", true);
     } finally {
       if (submitButton) {
         submitButton.disabled = false;
@@ -198,7 +198,7 @@ if (trackForm) {
         showNotice(trackForm, message, true);
       }
     } catch (networkError) {
-      showNotice(trackForm, "Could not reach the FIX-KAR server. Please check your connection or call us instead.", true);
+      showNotice(trackForm, "Could not reach the FixMyGhar server. Please check your connection or call us instead.", true);
     } finally {
       if (submitButton) {
         submitButton.disabled = false;

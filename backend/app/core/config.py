@@ -8,13 +8,13 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
-    PROJECT_NAME: str = "FIX-KAR Booking API"
+    PROJECT_NAME: str = "FixMyGhar Booking API"
     API_V1_PREFIX: str = "/api/v1"
     ENVIRONMENT: str = "development"
 
     # PostgreSQL connection string, e.g.
-    # postgresql+psycopg2://fixkar:password@localhost:5432/fixkar
-    DATABASE_URL: str = "postgresql+psycopg2://fixkar:fixkar@localhost:5432/fixkar"
+    # postgresql+psycopg2://fixmyghar:password@localhost:5432/fixmyghar
+    DATABASE_URL: str = "postgresql+psycopg2://fixmyghar:fixmyghar@localhost:5432/fixmyghar"
 
     # Comma-separated list of allowed browser origins for CORS.
     CORS_ORIGINS: str = "http://127.0.0.1:5500,http://localhost:5500"

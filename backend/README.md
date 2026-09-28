@@ -1,6 +1,6 @@
-# FIX-KAR Booking API
+# FixMyGhar Booking API
 
-Production-oriented FastAPI backend for the existing FIX-KAR static
+Production-oriented FastAPI backend for the existing FixMyGhar static
 HTML/CSS/JS website. It powers the site's enquiry/booking form and the
 "Track Service Request" page. The frontend itself was **not** rewritten —
 see `BACKEND_ASSUMPTIONS.md` (alongside this file) for what was inferred
@@ -79,7 +79,7 @@ Copy `.env.example` to `.env` and fill in real values. **Never commit `.env`.**
 | Variable        | Purpose                                                              | Example (dev)                                              |
 |-----------------|-----------------------------------------------------------------------|--------------------------------------------------------------|
 | `ENVIRONMENT`   | `development` or `production`                                        | `development`                                                |
-| `DATABASE_URL`  | SQLAlchemy PostgreSQL connection string                              | `postgresql+psycopg2://fixkar:fixkar@localhost:5433/fixkar`  |
+| `DATABASE_URL`  | SQLAlchemy PostgreSQL connection string                              | `postgresql+psycopg2://fixmyghar:fixmyghar@localhost:5433/fixmyghar`  |
 | `CORS_ORIGINS`  | Comma-separated list of frontend origins allowed to call the API     | `http://127.0.0.1:5500,http://localhost:5500`                |
 | `SECRET_KEY`    | Reserved for future signed tokens (e.g. admin auth). Not used yet.   | any long random string                                       |
 
@@ -98,7 +98,7 @@ If port 5432 is free on your machine, you can change the mapping in
 `docker-compose.yml` back to `5432:5432` and update `DATABASE_URL`
 accordingly.
 
-Credentials (dev only): user `fixkar`, password `fixkar`, database `fixkar`
+Credentials (dev only): user `fixmyghar`, password `fixmyghar`, database `fixmyghar`
 — set in `docker-compose.yml`'s `environment:` block.
 
 ### Option B — A PostgreSQL server you already run
@@ -106,8 +106,8 @@ Credentials (dev only): user `fixkar`, password `fixkar`, database `fixkar`
 Create a database and role yourself, e.g.:
 
 ```sql
-CREATE USER fixkar WITH PASSWORD 'fixkar';
-CREATE DATABASE fixkar OWNER fixkar;
+CREATE USER fixmyghar WITH PASSWORD 'fixmyghar';
+CREATE DATABASE fixmyghar OWNER fixmyghar;
 ```
 
 Then point `DATABASE_URL` at it.
@@ -237,7 +237,7 @@ It does three things:
 ```nginx
 server {
     listen 80;
-    server_name fix-kar.in www.fix-kar.in;
+    server_name fixmyghar.com www.fixmyghar.com;
 
     root /var/www/fixkaro;
     index index.html;
@@ -292,7 +292,7 @@ Nginx.
 ## 14. AWS EC2 deployment steps
 
 > **Note:** this section is the from-scratch bootstrap guide for a new
-> environment. The live fix-kar.in environment already exists and redeploys
+> environment. The live fixmyghar.com environment already exists and redeploys
 > automatically via `.github/workflows/deploy.yml` on every push to `main`
 > (a self-hosted runner on the instance itself: repo at
 > `/home/ubuntu/Fixkaro`, static files rsynced to `/var/www/fixkaro`,
@@ -314,27 +314,27 @@ Nginx.
 3. **Create the database and role** (§7 Option B) if self-hosting Postgres
    on the instance, or create the RDS instance/database if using RDS.
 4. **Deploy the code:** `git clone`/`scp` this repo's `backend/` directory
-   to the instance, e.g. into `/opt/fixkar/backend`. Deploy the existing
+   to the instance, e.g. into `/opt/fixmyghar/backend`. Deploy the existing
    frontend files to `/var/www/fixkaro` (§13's Nginx `root`).
 5. **Set up the virtual environment and install dependencies** (§4–5) on
    the instance.
-6. **Create `/opt/fixkar/backend/.env`** with production values (real
-   `DATABASE_URL`, `CORS_ORIGINS=https://fix-kar.in,https://www.fix-kar.in`,
+6. **Create `/opt/fixmyghar/backend/.env`** with production values (real
+   `DATABASE_URL`, `CORS_ORIGINS=https://fixmyghar.com,https://www.fixmyghar.com`,
    `ENVIRONMENT=production`, a freshly generated `SECRET_KEY`). Restrict its
    file permissions (`chmod 600 .env`).
 7. **Run migrations:** `alembic upgrade head`.
 8. **Run the API as a systemd service** so it restarts on boot/crash.
-   Example `/etc/systemd/system/fixkar-api.service`:
+   Example `/etc/systemd/system/fixmyghar-api.service`:
    ```ini
    [Unit]
-   Description=FIX-KAR FastAPI backend
+   Description=FixMyGhar FastAPI backend
    After=network.target
 
    [Service]
-   User=fixkar
-   WorkingDirectory=/opt/fixkar/backend
-   EnvironmentFile=/opt/fixkar/backend/.env
-   ExecStart=/opt/fixkar/backend/.venv/bin/gunicorn app.main:app \
+   User=fixmyghar
+   WorkingDirectory=/opt/fixmyghar/backend
+   EnvironmentFile=/opt/fixmyghar/backend/.env
+   ExecStart=/opt/fixmyghar/backend/.venv/bin/gunicorn app.main:app \
        -k uvicorn.workers.UvicornWorker --workers 4 --bind 127.0.0.1:8000
    Restart=always
 
@@ -342,14 +342,14 @@ Nginx.
    WantedBy=multi-user.target
    ```
    ```bash
-   sudo systemctl enable --now fixkar-api
+   sudo systemctl enable --now fixmyghar-api
    ```
 9. **Configure Nginx** with the server block from §13, then:
    ```bash
    sudo nginx -t && sudo systemctl reload nginx
    ```
-10. **Enable HTTPS** with Certbot: `sudo certbot --nginx -d fix-kar.in -d www.fix-kar.in`.
-11. **Verify:** `curl https://fix-kar.in/api/v1/health` and load the site
+10. **Enable HTTPS** with Certbot: `sudo certbot --nginx -d fixmyghar.com -d www.fixmyghar.com`.
+11. **Verify:** `curl https://fixmyghar.com/api/v1/health` and load the site
     in a browser, submit the enquiry form, and confirm a booking reference
     appears.
 
@@ -369,5 +369,5 @@ In production the site is served from the real domain (not `localhost`), so
 it automatically uses the relative path `/api/v1`, which Nginx proxies to
 the backend (§13). If the API is ever hosted on a **different** domain than
 the frontend, change the second branch to that absolute URL, e.g.
-`"https://api.fix-kar.in/api/v1"`, and add that frontend origin to the
+`"https://api.fixmyghar.com/api/v1"`, and add that frontend origin to the
 backend's `CORS_ORIGINS`.

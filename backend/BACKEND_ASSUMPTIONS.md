@@ -128,7 +128,7 @@ runnable with zero external services. This is a deliberate trade-off:
   Postgres-specific.
 - If true Postgres-backed integration tests are wanted later, point
   `TEST_DATABASE_URL` in `tests/conftest.py` at a second Postgres database
-  (e.g. `fixkar_test`) instead of SQLite.
+  (e.g. `fixmyghar_test`) instead of SQLite.
 
 ### k. CORS origins default to VS Code Live Server ports
 `.env.example` defaults `CORS_ORIGINS` to `http://127.0.0.1:5500,http://
