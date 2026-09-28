@@ -1156,8 +1156,10 @@ footer {
 
 .footer-logo {
   width: 210px;
-  filter: brightness(0) invert(1);
-  opacity: 0.94;
+  display: block;
+  background: #fff;
+  padding: 10px 14px;
+  border-radius: 12px;
   margin-bottom: 18px;
 }
 
