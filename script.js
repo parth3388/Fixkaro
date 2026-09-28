@@ -24,7 +24,7 @@ if (headerTarget) {
   headerTarget.innerHTML = `
     <header class="header">
       <nav class="nav wrap">
-        <a href="/"><img class="logo" src="assets/fixmyghar-logo.webp" alt="FixMyGhar – Affordable, Reliable, Fast"></a>
+        <a href="/"><img class="logo" src="assets/fixmyghar-logo.webp?v=20260928b" alt="FixMyGhar – Affordable, Reliable, Fast"></a>
         <div class="navlinks">
           <a${active("home")} href="/">Home</a>
           <a${active("services")} href="/services">Services</a>
@@ -52,7 +52,7 @@ if (footerTarget) {
       <div class="wrap">
         <div class="footer-grid">
           <div>
-            <img class="footer-logo" src="assets/fixmyghar-logo.webp" alt="FixMyGhar">
+            <img class="footer-logo" src="assets/fixmyghar-logo.webp?v=20260928b" alt="FixMyGhar">
             <p>Affordable, reliable and convenient home appliance service support from Pali, Rajasthan.</p>
           </div>
           <div>
